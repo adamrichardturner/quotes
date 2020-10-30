@@ -27,6 +27,9 @@ const getQuotes = async () => {
             return response.json()
         })
         .then((data) => {
+            let num = Math.floor(Math.random() * data.length);
+            quote.innerHTML = data[num]["text"];
+            author.innerHTML = data[num]["from"];
             generateQuote(data);
 
         })
