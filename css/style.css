@@ -8,7 +8,6 @@ body {
 
 body {
     background: #f44242;
-    overflow-y: hidden;
 }
 
 h1 {
@@ -98,17 +97,6 @@ div.button {
     margin: 0px;
 }
 
-#getQuote:hover {
-    color: black;
-    transition: all 0.25s ease-in;
-}
-
-#twitter:hover {
-    color: black;
-    transition: all 0.25s ease-in;
-}
-
-
 #twitter>i {
     font-size: 1.5rem;
 }
@@ -116,6 +104,8 @@ div.button {
 .button:hover {
     text-decoration: none;
     color: white;
+    color: black;
+    transition: all 0.25s ease-in;
     opacity: 0.9;
 }
 
@@ -147,6 +137,10 @@ span#author {
 /* Media Queries */
 
 @media only screen and (max-width: 767px) {
+    main {
+        justify-content: flex-start;
+    }
+
     div.quote-box {
         width: 90vw;
     }
@@ -163,6 +157,12 @@ span#author {
 
     span#author {
         font-size: 1rem;
+    }
+
+    div.button:hover {
+        background: '';
+        color: white;
+        opacity: '';
     }
 }
 
