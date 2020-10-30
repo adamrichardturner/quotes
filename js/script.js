@@ -3,17 +3,21 @@ const quote = document.getElementById("text");
 const author = document.getElementById("author");
 const quoteBtn = document.getElementById("getQuote");
 const twitter = document.getElementById("twitter");
-// Function to Quote to Twitter
+// Function to send Quote to Twitter
 const shareTwitter = () => {
     window.open('https://twitter.com/intent/tweet?text=' +
         encodeURIComponent('"' + quote.innerHTML + '"' + "  -" + author.innerHTML));
 };
+// Function to select a quote at Random from Quote's Object
+const selectQuote = (data) => {
+    let num = Math.floor(Math.random() * data.length);
+    quote.innerHTML = data[num]["text"];
+    author.innerHTML = data[num]["from"];
+}
 // Generates a Quote using a Random Number
 const generateQuote = (data) => {
     quoteBtn.addEventListener('click', function () {
-        let num = Math.floor(Math.random() * data.length);
-        quote.innerHTML = data[num]["text"];
-        author.innerHTML = data[num]["from"];
+        selectQuote(data);
     });
     twitter.addEventListener('click', function () {
         shareTwitter();
@@ -27,11 +31,8 @@ const getQuotes = async () => {
             return response.json()
         })
         .then((data) => {
-            let num = Math.floor(Math.random() * data.length);
-            quote.innerHTML = data[num]["text"];
-            author.innerHTML = data[num]["from"];
+            selectQuote(data);
             generateQuote(data);
-
         })
         .catch((err) => {
             console.log('Quote file is missing');
