@@ -1,22 +1,38 @@
-function loadJSON(callback) {
-    let leaders = new XMLHttpRequest();
-    leaders.overrideMimeType("application/json");
-    leaders.open('GET', 'leaders.json', true);
-    leaders.onreadystatechange = function () {
-        if (leaders.readyState == 4 && leaders.status == "200") {
-            callback(leaders.responseText);
-        }
-    };
-    leaders.send(null);
-}
-
-function init() {
-    loadJSON(function (response) {
-        // Parse JSON string into object
-        var leadersObj = JSON.parse(response);
-        return leadersObj;
+// Store DOM elements in variables for later use
+const quote = document.getElementById("text");
+const author = document.getElementById("author");
+const quoteBtn = document.getElementById("getQuote");
+const twitter = document.getElementById("twitter");
+// Function to Quote to Twitter
+const shareTwitter = () => {
+    window.open('https://twitter.com/intent/tweet?text=' +
+        encodeURIComponent('"' + quote.innerHTML + '"' + "  -" + author.innerHTML));
+};
+// Generates a Quote using a Random Number
+const generateQuote = (data) => {
+    quoteBtn.addEventListener('click', function () {
+        let num = Math.floor(Math.random() * data.length);
+        quote.innerHTML = data[num]["text"];
+        author.innerHTML = data[num]["from"];
     });
-}
+    twitter.addEventListener('click', function () {
+        shareTwitter();
+    });
+};
+// Async fetch of quotes hosted on Github
+const getQuotes = async () => {
+    const endpoint = `https://raw.githubusercontent.com/adamrichardturner/quotes/master/js/leaders.json`;
+    fetch(endpoint)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            generateQuote(data);
 
-let leaders = init();
-console.log(leaders[0].text);
+        })
+        .catch((err) => {
+            console.log('Quote file is missing');
+        })
+}
+// Execute higher order function
+getQuotes();

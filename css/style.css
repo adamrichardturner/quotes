@@ -36,7 +36,8 @@ main {
 
 div.quote-box {
     width: 65vw;
-    height: 30%;
+    height: auto;
+    padding: 40px 0px;
     border: 2.5px solid black;
     border-radius: 3px;
     background-color: white;
@@ -132,7 +133,7 @@ div.button {
 }
 
 div.author-box {
-    height: 25px;
+    height: auto;
 }
 
 span#author {
@@ -158,6 +159,10 @@ span#author {
         font-size: 1rem;
         padding: 0px;
         line-height: 1;
+    }
+
+    span#author {
+        font-size: 1rem;
     }
 }
 
