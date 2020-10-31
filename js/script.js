@@ -25,6 +25,7 @@ const selectQuote = (data) => {
     quote.innerHTML = data[num]["text"];
     author.innerHTML = data[num]["from"];
 }
+
 // Generates a Quote using a Random Number
 const generateQuote = (data) => {
     quoteBtn.addEventListener('click', function () {
@@ -34,6 +35,7 @@ const generateQuote = (data) => {
         shareTwitter();
     });
 };
+
 // Async fetch of quotes hosted on Github
 const getQuotes = async () => {
     const endpoint = `https://raw.githubusercontent.com/adamrichardturner/quotes/master/js/leaders.json`;
@@ -49,7 +51,8 @@ const getQuotes = async () => {
         })
         .catch((err) => {
             console.log('Quote file is missing');
-        })
-}
+        });
+};
+
 // Execute higher order function
 getQuotes();
