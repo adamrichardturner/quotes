@@ -44,6 +44,7 @@ div.quote-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important
 }
 
 div.quote-text {
@@ -87,6 +88,10 @@ div.button {
     padding: 10px 2rem;
     height: 20px;
     cursor: pointer;
+}
+
+div.button:active {
+    color: black;
 }
 
 #twitter {
@@ -138,10 +143,6 @@ span#author {
 /* Media Queries */
 
 @media only screen and (max-width: 767px) {
-    main {
-        justify-content: flex-start;
-    }
-
     div.quote-box {
         width: 90vw;
     }
@@ -160,10 +161,14 @@ span#author {
         font-size: 1rem;
     }
 
+    div.button:active {
+        color: white;
+    }
+
     div.button:hover {
         background: '';
         color: white;
-        opacity: '';
+        opacity: 1;
     }
 }
 

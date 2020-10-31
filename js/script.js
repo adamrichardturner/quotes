@@ -8,6 +8,17 @@ const shareTwitter = () => {
     window.open('https://twitter.com/intent/tweet?text=' +
         encodeURIComponent('"' + quote.innerHTML + '"' + "  -" + author.innerHTML));
 };
+
+// Filter out quotes too long for my quote box
+const quoteFilter = (data) => {
+    const quotes = data.filter(x => {
+        if (x["text"].length < 72 && x["from"].length < 24) {
+            return true;
+        }
+    })
+    return quotes;
+};
+
 // Function to select a quote at Random from Quote's Object
 const selectQuote = (data) => {
     let num = Math.floor(Math.random() * data.length);
@@ -31,8 +42,10 @@ const getQuotes = async () => {
             return response.json()
         })
         .then((data) => {
-            selectQuote(data);
-            generateQuote(data);
+            const quotes = quoteFilter(data);
+            console.log(quotes.length);
+            selectQuote(quotes);
+            generateQuote(quotes);
         })
         .catch((err) => {
             console.log('Quote file is missing');
