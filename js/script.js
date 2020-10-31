@@ -45,7 +45,6 @@ const getQuotes = async () => {
         })
         .then((data) => {
             const quotes = quoteFilter(data);
-            console.log(quotes.length);
             selectQuote(quotes);
             generateQuote(quotes);
         })
